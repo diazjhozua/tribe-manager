@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tribe-manager.api", "tribe-manager.api\tribe-manager.api.csproj", "{65215E39-0B8F-428A-BB7D-B7E46D9DDD71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tribe-manager.infrastructure", "tribe-manager.infrastructure\tribe-manager.infrastructure.csproj", "{0D5CE7ED-5AC3-4AD7-8EFD-4BFF0DE2EB1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tribe-manager.domain", "tribe-manager.domain\tribe-manager.domain.csproj", "{FE87AC92-6C9E-45E7-8421-E5D5B33E14DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tribe-manager.application", "tribe-manager.application\tribe-manager.application.csproj", "{627A0C11-0F3C-47CE-B5A5-59CAD2CDAAEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tribe-manager.contracts", "tribe-manager-contracts\tribe-manager.contracts.csproj", "{B1449E70-C970-4076-B629-0906A841ACD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65215E39-0B8F-428A-BB7D-B7E46D9DDD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65215E39-0B8F-428A-BB7D-B7E46D9DDD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65215E39-0B8F-428A-BB7D-B7E46D9DDD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65215E39-0B8F-428A-BB7D-B7E46D9DDD71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5CE7ED-5AC3-4AD7-8EFD-4BFF0DE2EB1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5CE7ED-5AC3-4AD7-8EFD-4BFF0DE2EB1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5CE7ED-5AC3-4AD7-8EFD-4BFF0DE2EB1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5CE7ED-5AC3-4AD7-8EFD-4BFF0DE2EB1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE87AC92-6C9E-45E7-8421-E5D5B33E14DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE87AC92-6C9E-45E7-8421-E5D5B33E14DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE87AC92-6C9E-45E7-8421-E5D5B33E14DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE87AC92-6C9E-45E7-8421-E5D5B33E14DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{627A0C11-0F3C-47CE-B5A5-59CAD2CDAAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627A0C11-0F3C-47CE-B5A5-59CAD2CDAAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627A0C11-0F3C-47CE-B5A5-59CAD2CDAAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627A0C11-0F3C-47CE-B5A5-59CAD2CDAAEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1449E70-C970-4076-B629-0906A841ACD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1449E70-C970-4076-B629-0906A841ACD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1449E70-C970-4076-B629-0906A841ACD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1449E70-C970-4076-B629-0906A841ACD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7413A8AC-751E-4527-82C7-0D6E95F2B9A5}
+	EndGlobalSection
+EndGlobal
