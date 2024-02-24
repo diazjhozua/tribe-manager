@@ -1,34 +1,57 @@
 ﻿using tribe_manager.application.Common.Interfaces.Authentication;
+using tribe_manager.application.Common.Interfaces.Persistence;
+using tribe_manager.domain.Entities;
 
 namespace tribe_manager.application.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IUserRepository _userRepository;
 
-        public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator)
+        public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
+            _userRepository = userRepository;
         }
 
         public AuthenticationResult Login(string email, string password)
         {
+            if (_userRepository.GetUserByEmail(email) is not User user)
+            {
+                throw new Exception("Invalid Credentials");
+            }
 
-            Guid userId = Guid.NewGuid();
-            string token = _jwtTokenGenerator.GenerateToken(userId, "Jhozua", "Diaz");
+            if (password != user.Password)
+            {
+                throw new Exception("Invalid Credentials");
+            }
 
-            return new AuthenticationResult(userId, "Jhozua", "Diaz", email, token);
+            string token = _jwtTokenGenerator.GenerateToken(user);
+
+            return new AuthenticationResult(user, token);
         }
 
         public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
-            // TODO: Check if user already exists
-            // TODO: Create user (generate unique ID)
+            if(_userRepository.GetUserByEmail(email) != null)
+            {
+                throw new Exception("User with given email already exists");
+            }
 
-            Guid userId = Guid.NewGuid();
-            string token = _jwtTokenGenerator.GenerateToken(userId, firstName, lastName);
+            User newUser = new()
+            {
+                Email = email,
+                FirstName = firstName,
+                LastName = lastName,
+                Password = password,
+            };
+            
+            _userRepository.Add(newUser);
 
-            return new AuthenticationResult(userId, firstName, lastName, email, token);
+            string token = _jwtTokenGenerator.GenerateToken(newUser);
+
+            return new AuthenticationResult(newUser, token);
         }
     }
 }

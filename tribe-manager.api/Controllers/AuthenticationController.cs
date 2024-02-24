@@ -21,10 +21,10 @@ namespace tribe_manager.api.Controllers
             AuthenticationResult loginResult = _authenticationService.Login(request.Email, request.Password);
 
             return Ok(new AuthenticationResponse(
-                Id: loginResult.Id, 
-                FirstName: loginResult.FirstName, 
-                LastName: loginResult.LastName, 
-                Email: loginResult.Email, 
+                Id: loginResult.User.Id, 
+                FirstName: loginResult.User.FirstName, 
+                LastName: loginResult.User.LastName, 
+                Email: loginResult.User.Email, 
                 Token: loginResult.Token));
         }
 
@@ -35,10 +35,10 @@ namespace tribe_manager.api.Controllers
                 request.FirstName, request.LastName, request.Email, request.Password);
 
             return Ok(new AuthenticationResponse(
-                Id: registerResult.Id,
-                FirstName: registerResult.FirstName,
-                LastName: registerResult.LastName,
-                Email: registerResult.Email,
+                Id: registerResult.User.Id,
+                FirstName: registerResult.User.FirstName,
+                LastName: registerResult.User.LastName,
+                Email: registerResult.User.Email,
                 Token: registerResult.Token));
         }
     }

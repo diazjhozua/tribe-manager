@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using tribe_manager.application.Common.Interfaces.Authentication;
 using tribe_manager.application.Common.Services;
+using tribe_manager.domain.Entities;
 
 namespace tribe_manager.infrastructure.Authentication
 {
@@ -19,16 +20,16 @@ namespace tribe_manager.infrastructure.Authentication
             _jwtSettings = jwtOptions.Value;
         }
 
-        public string GenerateToken(Guid userId, string firstName, string lastName)
+        public string GenerateToken(User user)
         {
             SigningCredentials signingCredentials = new(
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(_jwtSettings.Secret)), SecurityAlgorithms.HmacSha256);
 
             Claim[] claims = [
-                new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
-                new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-                new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
+                new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             ];
 
