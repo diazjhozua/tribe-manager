@@ -1,9 +1,8 @@
-﻿namespace tribe_manager.application.Services.Authentication
+﻿using tribe_manager.domain.Entities;
+
+namespace tribe_manager.application.Services.Authentication
 {
     public record AuthenticationResult(
-        Guid Id,
-        string FirstName,
-        string LastName,
-        string Email,
+        User User,
         string Token);
 }
