@@ -12,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
+    if (builder.Environment.IsProduction())
+    {
+        app.UseExceptionHandler("/error");
+    }
+
     app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();
