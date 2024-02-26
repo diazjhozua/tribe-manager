@@ -1,5 +1,7 @@
-﻿using tribe_manager.application.Common.Interfaces.Authentication;
+﻿using ErrorOr;
+using tribe_manager.application.Common.Interfaces.Authentication;
 using tribe_manager.application.Common.Interfaces.Persistence;
+using tribe_manager.domain.Common.Errors;
 using tribe_manager.domain.Entities;
 
 namespace tribe_manager.application.Services.Authentication
@@ -15,16 +17,16 @@ namespace tribe_manager.application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public AuthenticationResult Login(string email, string password)
+        public ErrorOr<AuthenticationResult> Login(string email, string password)
         {
             if (_userRepository.GetUserByEmail(email) is not User user)
             {
-                throw new Exception("Invalid Credentials");
+                return Errors.Authentication.InvalidCredentials;
             }
 
             if (password != user.Password)
             {
-                throw new Exception("Invalid Credentials");
+                return Errors.Authentication.InvalidCredentials;
             }
 
             string token = _jwtTokenGenerator.GenerateToken(user);
@@ -32,11 +34,11 @@ namespace tribe_manager.application.Services.Authentication
             return new AuthenticationResult(user, token);
         }
 
-        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+        public ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
         {
             if(_userRepository.GetUserByEmail(email) != null)
             {
-                throw new Exception("User with given email already exists");
+                return Errors.User.DuplicateEmail;
             }
 
             User newUser = new()
