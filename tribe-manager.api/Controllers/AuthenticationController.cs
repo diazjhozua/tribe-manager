@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ErrorOr;
+using Microsoft.AspNetCore.Mvc;
 using tribe_manager.application.Services.Authentication;
 using tribe_manager.contracts.Authentication;
 
@@ -6,7 +7,7 @@ namespace tribe_manager.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : ApiController
     {
         private readonly IAuthenticationService _authenticationService;
 
@@ -18,28 +19,36 @@ namespace tribe_manager.api.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            AuthenticationResult loginResult = _authenticationService.Login(request.Email, request.Password);
+            ErrorOr<AuthenticationResult> loginResult = _authenticationService.Login(request.Email, request.Password);
 
-            return Ok(new AuthenticationResponse(
-                Id: loginResult.User.Id, 
-                FirstName: loginResult.User.FirstName, 
-                LastName: loginResult.User.LastName, 
-                Email: loginResult.User.Email, 
-                Token: loginResult.Token));
+            return loginResult.Match(
+                result => Ok(
+                    new AuthenticationResponse(
+                            Id: result.User.Id,
+                            FirstName: result.User.FirstName,
+                            LastName: result.User.LastName,
+                            Email: result.User.Email,
+                            Token:  result.Token)
+                    ),
+                Problem);
         }
 
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            AuthenticationResult registerResult = _authenticationService.Register(
+            ErrorOr<AuthenticationResult> registerResult = _authenticationService.Register(
                 request.FirstName, request.LastName, request.Email, request.Password);
 
-            return Ok(new AuthenticationResponse(
-                Id: registerResult.User.Id,
-                FirstName: registerResult.User.FirstName,
-                LastName: registerResult.User.LastName,
-                Email: registerResult.User.Email,
-                Token: registerResult.Token));
+            return registerResult.Match(
+                result => Ok(
+                    new AuthenticationResponse(
+                            Id: result.User.Id,
+                            FirstName: result.User.FirstName,
+                            LastName: result.User.LastName,
+                            Email: result.User.Email,
+                            Token: result.Token)
+                    ),
+                Problem);
         }
     }
 }
