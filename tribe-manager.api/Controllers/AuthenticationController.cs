@@ -1,25 +1,26 @@
 ﻿using ErrorOr;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using tribe_manager.application.Services.Authentication;
+using tribe_manager.application.Services.Authentication.Commands.Register;
+using tribe_manager.application.Services.Authentication.Queries.Login;
 using tribe_manager.contracts.Authentication;
 
 namespace tribe_manager.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController : ApiController
+    public class AuthenticationController(ISender mediator) : ApiController(mediator)
     {
-        private readonly IAuthenticationService _authenticationService;
-
-        public AuthenticationController(IAuthenticationService authenticationService)
-        {
-            _authenticationService = authenticationService;
-        }
-
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            ErrorOr<AuthenticationResult> loginResult = _authenticationService.Login(request.Email, request.Password);
+            LoginQuery loginQry = new(
+                Email: request.Email,
+                Password: request.Password
+            );
+
+            ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(loginQry);
 
             return loginResult.Match(
                 result => Ok(
@@ -34,10 +35,15 @@ namespace tribe_manager.api.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            ErrorOr<AuthenticationResult> registerResult = _authenticationService.Register(
-                request.FirstName, request.LastName, request.Email, request.Password);
+            RegisterCommand registerCmd = new(
+                FirstName: request.FirstName, 
+                LastName: request.LastName, 
+                Email: request.Email, 
+                Password: request.Password);
+
+            ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(registerCmd);
 
             return registerResult.Match(
                 result => Ok(
