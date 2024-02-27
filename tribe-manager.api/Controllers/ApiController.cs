@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -6,6 +7,13 @@ namespace tribe_manager.api.Controllers
 {
     public class ApiController : ControllerBase
     {
+        protected readonly ISender _mediator;
+
+        public ApiController(ISender mediator)
+        {
+            _mediator = mediator;
+        }
+
         protected IActionResult Problem(List<Error> errors)
         {
             if (errors.All(error => error.Type == ErrorType.Validation))
