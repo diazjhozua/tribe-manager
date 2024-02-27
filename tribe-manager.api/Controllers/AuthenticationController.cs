@@ -1,8 +1,8 @@
 ﻿using ErrorOr;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using tribe_manager.application.Services.Authentication;
 using tribe_manager.application.Services.Authentication.Commands.Register;
+using tribe_manager.application.Services.Authentication.Common;
 using tribe_manager.application.Services.Authentication.Queries.Login;
 using tribe_manager.contracts.Authentication;
 

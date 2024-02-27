@@ -2,6 +2,7 @@
 using MediatR;
 using tribe_manager.application.Common.Interfaces.Authentication;
 using tribe_manager.application.Common.Interfaces.Persistence;
+using tribe_manager.application.Services.Authentication.Common;
 using tribe_manager.domain.Common.Errors;
 using tribe_manager.domain.Entities;
 
