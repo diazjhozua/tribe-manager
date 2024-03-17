@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using tribe_manager.application.Services.Authentication.Commands.Register;
 using tribe_manager.application.Services.Authentication.Common;
@@ -10,7 +11,7 @@ using tribe_manager.contracts.Authentication;
 namespace tribe_manager.api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [AllowAnonymous]
     public class AuthenticationController(ISender mediator, IMapper mapper) : ApiController(mediator, mapper)
     {
         [HttpPost("login")]
