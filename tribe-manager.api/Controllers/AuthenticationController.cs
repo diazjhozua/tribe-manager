@@ -1,4 +1,5 @@
-﻿using ErrorOr;
+using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using tribe_manager.application.Services.Authentication.Commands.Register;
@@ -10,7 +11,7 @@ namespace tribe_manager.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController(ISender mediator) : ApiController(mediator)
+    public class AuthenticationController(ISender mediator, IMapper mapper) : ApiController(mediator, mapper)
     {
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
