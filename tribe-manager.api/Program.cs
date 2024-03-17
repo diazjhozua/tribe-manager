@@ -1,3 +1,4 @@
+using tribe_manager.api;
 using tribe_manager.application;
 using tribe_manager.infrastructure;
 
@@ -5,9 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
         .AddApplication()
-        .AddInfrastructure(builder.Configuration);
-
-    builder.Services.AddControllers();
+        .AddInfrastructure(builder.Configuration)
+        .AddPresentation();
 }
 
 var app = builder.Build();
