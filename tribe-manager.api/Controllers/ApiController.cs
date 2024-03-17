@@ -1,11 +1,14 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace tribe_manager.api.Controllers
 {
+    [ApiController]
+    [Authorize]
     public class ApiController : ControllerBase
     {
         protected readonly ISender _mediator;
