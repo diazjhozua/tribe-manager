@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -8,10 +9,12 @@ namespace tribe_manager.api.Controllers
     public class ApiController : ControllerBase
     {
         protected readonly ISender _mediator;
+        protected readonly IMapper _mapper;
 
-        public ApiController(ISender mediator)
+        public ApiController(ISender mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         protected IActionResult Problem(List<Error> errors)

@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using tribe_manager.application.Services.Authentication.Commands.Register;
@@ -10,7 +11,7 @@ namespace tribe_manager.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController(ISender mediator) : ApiController(mediator)
+    public class AuthenticationController(ISender mediator, IMapper mapper) : ApiController(mediator, mapper)
     {
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
@@ -23,14 +24,7 @@ namespace tribe_manager.api.Controllers
             ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(loginQry);
 
             return loginResult.Match(
-                result => Ok(
-                    new AuthenticationResponse(
-                            Id: result.User.Id,
-                            FirstName: result.User.FirstName,
-                            LastName: result.User.LastName,
-                            Email: result.User.Email,
-                            Token:  result.Token)
-                    ),
+                result => Ok(_mapper.Map<AuthenticationResponse>(result)),
                 Problem);
         }
 
@@ -46,14 +40,7 @@ namespace tribe_manager.api.Controllers
             ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(registerCmd);
 
             return registerResult.Match(
-                result => Ok(
-                    new AuthenticationResponse(
-                            Id: result.User.Id,
-                            FirstName: result.User.FirstName,
-                            LastName: result.User.LastName,
-                            Email: result.User.Email,
-                            Token: result.Token)
-                    ),
+                result => Ok(_mapper.Map<AuthenticationResponse>(result)),
                 Problem);
         }
     }
