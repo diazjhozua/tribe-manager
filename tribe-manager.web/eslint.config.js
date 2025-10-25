@@ -26,4 +26,11 @@ export default defineConfig([
       },
     },
   },
+  {
+    files: ['src/components/ui/**/*.{ts,tsx}'],
+    rules: {
+      '@typescript-eslint/no-empty-object-type': 'off',
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 ]);
