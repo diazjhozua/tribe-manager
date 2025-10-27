@@ -1,11 +1,22 @@
-import { Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import {
+  Header,
+  Footer,
+  HeroSection,
+  AboutSection,
+  TeamSection,
+  CallToActionSection,
+} from '@/components';
 
-function Home() {
+export default function Home() {
   return (
-    <>
-      <Text>Hi</Text>
-    </>
+    <Box>
+      <Header />
+      <HeroSection />
+      <AboutSection />
+      <TeamSection />
+      <CallToActionSection />
+      <Footer />
+    </Box>
   );
 }
-
-export default Home;
