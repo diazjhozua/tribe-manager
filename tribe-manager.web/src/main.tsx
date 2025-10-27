@@ -16,5 +16,5 @@ createRoot(rootElement).render(
         <App />
       </BrowserRouter>
     </Provider>
-  </StrictMode>
+  </StrictMode>,
 );
