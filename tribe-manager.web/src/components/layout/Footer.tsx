@@ -27,9 +27,9 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const legalLinks = [
-    { label: 'Privacy Promise', href: '#privacy' },
-    { label: 'Tribe Terms', href: '#terms' },
-    { label: 'Cookie Crumbs', href: '#cookies' },
+    { label: 'Privacy Promise', href: '/privacy' },
+    { label: 'Tribe Terms', href: '/terms' },
+    { label: 'Cookie Crumbs', href: '/cookies' },
   ];
 
   return (
