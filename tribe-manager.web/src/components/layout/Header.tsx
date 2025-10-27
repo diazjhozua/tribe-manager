@@ -34,12 +34,16 @@ export const Header = () => {
       <Container maxW="container.xl">
         <Flex py={3} alignItems="center">
           {/* Logo */}
-          <HStack
-            gap={2}
-            cursor="pointer"
-            _hover={{ transform: 'scale(1.02)' }}
-            transition="transform 0.3s ease"
+          <Link
+            href="/"
+            _hover={{ textDecoration: 'none' }}
           >
+            <HStack
+              gap={2}
+              cursor="pointer"
+              _hover={{ transform: 'scale(1.02)' }}
+              transition="transform 0.3s ease"
+            >
             <Box
               position="relative"
               p={2}
@@ -84,13 +88,14 @@ export const Header = () => {
               </Text>
             </VStack>
           </HStack>
+          </Link>
 
           <Spacer />
 
           {/* Desktop Navigation */}
           <HStack gap={1} display={{ base: 'none', lg: 'flex' }}>
             <Link
-              href="#hero"
+              href="/#hero"
               position="relative"
               py={2}
               px={4}
@@ -110,7 +115,7 @@ export const Header = () => {
             </Link>
 
             <Link
-              href="#about"
+              href="/#about"
               py={2}
               px={4}
               borderRadius="2xl"
@@ -129,7 +134,7 @@ export const Header = () => {
             </Link>
 
             <Link
-              href="#creator"
+              href="/#creator"
               py={2}
               px={4}
               borderRadius="2xl"
@@ -151,7 +156,7 @@ export const Header = () => {
           {/* CTA Button */}
           <Button
             as="a"
-            href="#cta"
+            href="/#cta"
             display={{ base: 'none', md: 'flex' }}
             size="sm"
             bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
@@ -211,7 +216,7 @@ export const Header = () => {
             px={4}
           >
             <Link
-              href="#hero"
+              href="/#hero"
               py={3}
               px={4}
               borderRadius="xl"
@@ -232,7 +237,7 @@ export const Header = () => {
               Home
             </Link>
             <Link
-              href="#about"
+              href="/#about"
               py={3}
               px={4}
               borderRadius="xl"
@@ -253,7 +258,7 @@ export const Header = () => {
               About
             </Link>
             <Link
-              href="#creator"
+              href="/#creator"
               py={3}
               px={4}
               borderRadius="xl"
@@ -274,7 +279,7 @@ export const Header = () => {
               Creator
             </Link>
             <Link
-              href="#contact"
+              href="/#cta"
               py={3}
               px={4}
               borderRadius="xl"
@@ -291,12 +296,12 @@ export const Header = () => {
               gap={3}
               transition="all 0.3s ease"
             >
-              <Text fontSize="lg">📧</Text>
-              Contact
+              <Text fontSize="lg">🚀</Text>
+              Get Started
             </Link>
             <Button
               as="a"
-              href="#cta"
+              href="/#cta"
               mt={3}
               size="sm"
               bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
