@@ -54,6 +54,27 @@
       }
     }
     </script>
+
+    <!-- Smooth Scrolling Styles -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Enhanced smooth scrolling for better UX */
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+
+      /* Respect user's motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
