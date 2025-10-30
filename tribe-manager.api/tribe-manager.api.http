@@ -1,0 +1,6 @@
+@tribe_manager.api_HostAddress = http://localhost:5255
+
+GET {{tribe_manager.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

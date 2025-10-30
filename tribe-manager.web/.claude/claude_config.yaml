@@ -1,0 +1,170 @@
+description: Chakra UI v3 Development with Senior React Best Practices
+globs: "*.tsx"
+
+rules: |
+  # Chakra UI v3 Rules
+
+  This project uses Chakra UI v3. Follow these rules:
+
+  1. Import from @chakra-ui/react: Alert, Avatar, Button, Card, Field, Table, etc.
+  2. Import from components/ui: Checkbox, Drawer, Radio, Menu, Dialog, Tooltip, etc.
+  3. Use toaster.create() instead of useToast()
+  4. Modal is now Dialog with different props
+  5. Boolean props changed: isOpen → open, isDisabled → disabled
+  6. colorScheme → colorPalette
+  7. Button icons are children, not props
+  8. Always use VStack/HStack, not Stack
+  9. Use compound components for complex components
+  10. Check migration guide for component-specific changes
+
+  # Senior React Developer Best Practices
+
+  ## 🏗️ Component Architecture
+  1. **Single Responsibility**: Each component should have one clear purpose
+  2. **Composition over Inheritance**: Use composition patterns and render props
+  3. **Extract Custom Hooks**: Move stateful logic into reusable custom hooks
+  4. **Compound Components**: Use for complex UI patterns (Tabs, Accordion, etc.)
+  5. **Container/Presentational**: Separate data logic from UI presentation
+  6. **Component Co-location**: Keep related files (styles, tests, types) together
+
+  ## 🔧 Performance Optimization
+  1. **Memoization**: Use React.memo, useMemo, useCallback strategically (not everywhere)
+  2. **Lazy Loading**: Use React.lazy() and Suspense for code splitting
+  3. **Avoid Inline Objects**: Extract objects/functions outside render or memoize them
+  4. **Keys in Lists**: Always use stable, unique keys for list items
+  5. **Bundle Analysis**: Regularly check bundle size and optimize imports
+  6. **Virtual Scrolling**: For large lists (1000+ items)
+
+  ## 🎯 State Management
+  1. **State Colocation**: Keep state as close to where it's used as possible
+  2. **Lifting State**: Only lift state when multiple components need it
+  3. **useReducer for Complex State**: When state has multiple sub-values or complex updates
+  4. **Context Sparingly**: Use for truly global state, avoid for frequently changing data
+  5. **State Machines**: Consider for complex state transitions (XState)
+  6. **Server State**: Use React Query/SWR for server state management
+
+  ## 🔍 TypeScript Excellence
+  1. **Strict Types**: Enable strict mode, avoid 'any' type
+  2. **Generic Components**: Make reusable components with proper generics
+  3. **Discriminated Unions**: For state that can be in multiple modes
+  4. **Interface Segregation**: Split large interfaces into smaller, focused ones
+  5. **Type Guards**: Create custom type guards for runtime type checking
+  6. **Utility Types**: Leverage Pick, Omit, Partial, Required effectively
+
+  ## 🧪 Testing Strategy
+  1. **Testing Library**: Use @testing-library/react for component testing
+  2. **Test Behavior**: Test what users see and do, not implementation details
+  3. **Mock Sparingly**: Only mock external dependencies, not internal functions
+  4. **Custom Render**: Create custom render function with providers
+  5. **Integration Tests**: Test component interactions, not just units
+  6. **E2E Coverage**: Use Playwright/Cypress for critical user journeys
+
+  ## 📁 Code Organization
+  1. **Feature-Based Structure**: Organize by features, not file types
+  2. **Barrel Exports**: Use index.ts files for clean imports
+  3. **Absolute Imports**: Configure path mapping for cleaner imports
+  4. **Consistent Naming**: Use PascalCase for components, camelCase for functions
+  5. **File Naming**: Component files match component name exactly
+  6. **Separation of Concerns**: Keep API calls, utilities, and components separate
+
+  ## 🎨 UI/UX Best Practices
+  1. **Accessibility First**: Use semantic HTML, ARIA labels, keyboard navigation
+  2. **Loading States**: Always show loading feedback for async operations
+  3. **Error Boundaries**: Implement error boundaries for graceful error handling
+  4. **Progressive Enhancement**: Start with basic functionality, add enhancements
+  5. **Responsive Design**: Mobile-first approach with proper breakpoints
+  6. **Design System**: Use consistent spacing, colors, typography tokens
+
+  ## 🚀 Developer Experience
+  1. **ESLint/Prettier**: Enforce consistent code style automatically
+  2. **Pre-commit Hooks**: Run linting and tests before commits
+  3. **Hot Module Replacement**: Configure for fast development feedback
+  4. **Error Boundaries**: Show helpful error messages in development
+  5. **DevTools Integration**: Use React DevTools, Redux DevTools effectively
+  6. **Documentation**: Write clear README, component stories, inline docs
+
+  ## 🔐 Security & Best Practices
+  1. **Input Sanitization**: Always sanitize user inputs
+  2. **XSS Prevention**: Use dangerouslySetInnerHTML sparingly and safely
+  3. **Environment Variables**: Keep secrets in environment variables
+  4. **Bundle Analysis**: Regularly audit dependencies for vulnerabilities
+  5. **CSP Headers**: Implement Content Security Policy
+  6. **HTTPS Everywhere**: Use secure connections in production
+
+  ## 🎭 Patterns to Use
+  1. **Higher-Order Components (HOCs)**: For cross-cutting concerns
+  2. **Render Props**: For sharing stateful logic between components
+  3. **Custom Hooks**: For reusable stateful logic
+  4. **Provider Pattern**: For dependency injection and global state
+  5. **Compound Components**: For flexible, composable APIs
+  6. **Controlled Components**: For form inputs and data flow clarity
+
+  ## 🚫 Patterns to Avoid
+  1. **Deep Prop Drilling**: Use context or state management instead
+  2. **Massive Components**: Break down components over 200 lines
+  3. **useEffect Soup**: Avoid multiple useEffects, consider useReducer
+  4. **Premature Optimization**: Don't memoize everything "just in case"
+  5. **God Components**: Components that do too many things
+  6. **Magic Numbers**: Use named constants instead of hardcoded values
+
+  ## 📊 Monitoring & Analytics
+  1. **Error Tracking**: Implement Sentry or similar for error monitoring
+  2. **Performance Monitoring**: Track Core Web Vitals and React performance
+  3. **User Analytics**: Track user interactions and feature usage
+  4. **Bundle Size Monitoring**: Alert on significant bundle size increases
+  5. **Lighthouse Audits**: Regular performance and accessibility audits
+  6. **Real User Monitoring**: Track actual user experience metrics
+
+  # 🏠 Tribe Manager Project-Specific Guidelines
+
+  ## 🎨 Family/Tribe Theme & Design Patterns
+  1. **Jungle Color Palette**: Use consistent green gradient colors (#065f46, #059669, #10b981, #34d399, #6ee7b7)
+  2. **Emoji Integration**: Use family/home emojis consistently (🏠, 👨‍👩‍👧‍👦, ✅, 🏆, 📱, 🌟)
+  3. **Gradient Backgrounds**: Apply jungle gradients for hero sections and CTAs
+  4. **Glass Morphism**: Use backdrop blur effects and transparency for modern UI
+  5. **Jungle Terminology**: Use "tribe", "family", "home management" language throughout
+  6. **Floating Animations**: Add subtle floating animations for nature icons (FaLeaf, FaTree, FaSeedling)
+  7. **Card Design**: Use 3xl border radius, green shadows, and hover animations for modern cards
+  8. **Badge Styling**: Use jungle-themed badges with green colors and nature emojis
+
+  ## 🏗️ Component Architecture Patterns
+  1. **Section Components**: Create separate components for each page section (Hero, About, Team, CTA)
+  2. **Layout Components**: Keep Header and Footer in layout directory for reusability
+  3. **Barrel Exports**: Use index.ts files for clean component imports from sections
+  4. **ID Anchoring**: Add IDs to sections for smooth scroll navigation (#hero, #about, #creator, #cta)
+  5. **Responsive Design**: Always use mobile-first approach with base, md, lg breakpoints
+  6. **Jungle Icons**: Prefer nature-themed React icons (FaLeaf, FaTree, FaSeedling) over generic ones
+
+  ## 🎯 Family Management Domain Rules
+  1. **Task-Focused Language**: Use "tasks", "points", "rewards", "family collaboration" terminology
+  2. **Gamification Elements**: Include points systems, achievements, and reward mechanics in copy
+  3. **Family-Centric**: Always frame features around family benefits and household management
+  4. **User Roles**: Consider different family member roles (parents, children, teens)
+  5. **Home Organization**: Focus on household tasks, chores, and family coordination
+  6. **Progress Tracking**: Emphasize visibility into family productivity and achievements
+
+  ## 🔧 Tribe Manager Development Best Practices
+  1. **Dynamic Content**: Use JavaScript for dynamic values (e.g., current year in footer)
+  2. **Chakra UI Colors**: Only use valid Chakra color tokens (green, teal, blue) not custom names (emerald)
+  3. **Icon Alternatives**: When React icons fail, use emojis as reliable fallbacks
+  4. **Gradient Usage**: Use bgGradient prop for gradients, not bg with CSS linear-gradient
+  5. **Link Navigation**: Make buttons navigational with as="a" and href="#section" for smooth scrolling
+  6. **Text Contrast**: Always specify text color in hover states to maintain readability
+  7. **Flex Layout**: Use Box with display="flex" instead of Flex component when import issues occur
+  8. **Avatar Images**: Use Avatar.Image with Avatar.Fallback for profile pictures with graceful fallbacks
+
+  ## 🎨 Visual Consistency Rules
+  1. **Jungle Theme**: Maintain consistent nature/jungle aesthetic across all components
+  2. **Green Variants**: Use different shades of green (green.500, green.600, teal.500) for variety
+  3. **Modern Animations**: Apply consistent hover effects (translateY, scale, shadow changes)
+  4. **Card Patterns**: Use similar card structure with gradient icons, titles, descriptions
+  5. **CTA Styling**: Maintain consistent call-to-action button styling across sections
+  6. **Typography Hierarchy**: Use consistent heading sizes and text colors throughout
+
+  ## 🚀 Performance & UX Optimizations
+  1. **Image Optimization**: Use external URLs for profile images with proper alt attributes
+  2. **Smooth Scrolling**: Implement anchor-based navigation for better user experience
+  3. **Loading States**: Consider loading states for dynamic content and images
+  4. **Mobile Responsiveness**: Test all jungle-themed components on mobile devices
+  5. **Accessibility**: Ensure emojis have proper context and icons have accessible labels
+  6. **SEO-Friendly**: Use semantic HTML structure within Chakra UI components
