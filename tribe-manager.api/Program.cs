@@ -8,8 +8,6 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
         .AddPresentation()
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
-
-
 }
 
 WebApplication app = builder.Build();
@@ -23,6 +21,9 @@ WebApplication app = builder.Build();
     app.UseSwaggerUI();
 
     app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+
     app.MapControllers();
 
     app.Run();
