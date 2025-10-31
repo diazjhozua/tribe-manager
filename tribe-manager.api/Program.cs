@@ -1,16 +1,15 @@
+using tribe_manager.api;
 using tribe_manager.application;
 using tribe_manager.infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
+        .AddPresentation()
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 
-    builder.Services.AddControllers();
 
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
 }
 
 WebApplication app = builder.Build();
