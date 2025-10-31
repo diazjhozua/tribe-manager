@@ -587,3 +587,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+tribe-manager.api/appsettings.Development.json
