@@ -17,8 +17,4 @@
     <ProjectReference Include="..\tribe-manager.infrastructure\tribe-manager.infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
