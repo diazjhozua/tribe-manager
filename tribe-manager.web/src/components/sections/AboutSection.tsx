@@ -133,7 +133,7 @@ export const AboutSection = () => {
         bgSize="200px 200px"
       />
 
-      <Container maxW="container.xl" position="relative" zIndex={1}>
+      <Container maxW="full" px={{ base: 4, md: 8 }} position="relative" zIndex={1}>
         <VStack gap={20}>
           <VStack gap={6} textAlign="center">
             <Badge

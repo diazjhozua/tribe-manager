@@ -78,7 +78,7 @@ export const HeroSection = () => {
         <Icon as={FaSeedling} boxSize={6} color="green.100" opacity={0.7} />
       </Box>
 
-      <Container maxW="container.xl" position="relative" zIndex={1}>
+      <Container maxW="full" px={{ base: 4, md: 8 }} position="relative" zIndex={1}>
         <VStack gap={10} textAlign="center">
           {/* Badge */}
           <Badge

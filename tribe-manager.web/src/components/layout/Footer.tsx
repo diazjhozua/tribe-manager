@@ -82,7 +82,7 @@ export const Footer = () => {
         <Icon as={FaSeedling} boxSize={6} color="green.200" opacity={0.4} />
       </Box>
 
-      <Container maxW="container.xl" position="relative" zIndex={1}>
+      <Container maxW="full" px={{ base: 4, md: 8 }} position="relative" zIndex={1}>
         <VStack gap={12}>
           {/* Header Section */}
           <VStack gap={6} textAlign="center">

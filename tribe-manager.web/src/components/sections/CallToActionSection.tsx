@@ -78,7 +78,7 @@ export const CallToActionSection = () => {
         <Icon as={FaSeedling} boxSize={10} color="green.100" opacity={0.5} />
       </Box>
 
-      <Container maxW="container.xl" position="relative" zIndex={1}>
+      <Container maxW="full" px={{ base: 4, md: 8 }} position="relative" zIndex={1}>
         <VStack gap={12} textAlign="center">
           {/* Badge */}
           <Badge

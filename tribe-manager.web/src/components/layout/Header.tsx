@@ -31,7 +31,7 @@ export const Header = () => {
       _hover={{ bg: 'rgba(248, 250, 252, 1)' }}
       boxShadow="0 1px 3px rgba(34, 197, 94, 0.1)"
     >
-      <Container maxW="container.xl">
+      <Container maxW="full" px={{ base: 4, md: 8 }}>
         <Flex py={3} alignItems="center">
           {/* Logo */}
           <Link
