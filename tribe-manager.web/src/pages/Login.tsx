@@ -16,10 +16,11 @@ import {
 import { FaLeaf, FaShieldAlt, FaRocket, FaHeart, FaStar, FaCheckCircle, FaUsers } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { FormInput } from '../components/ui';
+import { FormInput, PasswordToggle } from '../components/ui';
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -418,13 +419,17 @@ export default function Login() {
                   <FormInput
                     label="Password"
                     name="password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={handleInputChange}
                     placeholder="Enter your password"
-                    showPasswordToggle
                     required
-                  />
+                  >
+                    <PasswordToggle
+                      isVisible={showPassword}
+                      onToggle={() => setShowPassword(!showPassword)}
+                    />
+                  </FormInput>
 
                   <HStack justify="space-between" w="full">
                     <HStack gap={2}>

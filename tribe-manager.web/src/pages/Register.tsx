@@ -16,10 +16,12 @@ import {
 import { FaLeaf, FaUsers, FaHome, FaShieldAlt, FaRocket, FaStar, FaCheck, FaUser, FaLock } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { FormInput } from '../components/ui';
+import { FormInput, PasswordToggle } from '../components/ui';
 
 export default function Register() {
   const [currentStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -501,24 +503,32 @@ Family Size
                       <FormInput
                         label="Password"
                         name="password"
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         value={formData.password}
                         onChange={handleInputChange}
                         placeholder="Create a strong password"
-                        showPasswordToggle
                         required
-                      />
+                      >
+                        <PasswordToggle
+                          isVisible={showPassword}
+                          onToggle={() => setShowPassword(!showPassword)}
+                        />
+                      </FormInput>
 
                       <FormInput
                         label="Confirm Password"
                         name="confirmPassword"
-                        type="password"
+                        type={showConfirmPassword ? 'text' : 'password'}
                         value={formData.confirmPassword}
                         onChange={handleInputChange}
                         placeholder="Confirm your password"
-                        showPasswordToggle
                         required
-                      />
+                      >
+                        <PasswordToggle
+                          isVisible={showConfirmPassword}
+                          onToggle={() => setShowConfirmPassword(!showConfirmPassword)}
+                        />
+                      </FormInput>
                     </SimpleGrid>
                   </VStack>
 

@@ -3,11 +3,8 @@ import {
   Text,
   Input,
   Box,
-  Button,
-  Icon,
 } from '@chakra-ui/react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useState } from 'react';
+import { ReactNode } from 'react';
 
 interface FormInputProps {
   label: string;
@@ -17,8 +14,8 @@ interface FormInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
-  showPasswordToggle?: boolean;
   width?: 'full' | 'auto';
+  children?: ReactNode;
 }
 
 export const FormInput = ({
@@ -29,14 +26,9 @@ export const FormInput = ({
   onChange,
   placeholder,
   required = false,
-  showPasswordToggle = false,
-  width = 'full'
+  width = 'full',
+  children
 }: FormInputProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const inputType = showPasswordToggle && type === 'password'
-    ? (showPassword ? 'text' : 'password')
-    : type;
-
   return (
     <VStack gap={2} align="start" w={width}>
       <Text
@@ -50,7 +42,7 @@ export const FormInput = ({
       <Box position="relative" w="full">
         <Input
           name={name}
-          type={inputType}
+          type={type}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
@@ -72,30 +64,10 @@ export const FormInput = ({
           transition="all 0.2s ease"
           fontSize="md"
           fontWeight="500"
-          pr={showPasswordToggle ? "12" : "4"}
+          pr={children ? "12" : "4"}
           required={required}
         />
-        {showPasswordToggle && type === 'password' && (
-          <Button
-            position="absolute"
-            right="3"
-            top="50%"
-            transform="translateY(-50%)"
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowPassword(!showPassword)}
-            color="gray.400"
-            _hover={{
-              color: 'green.600',
-              bg: 'green.50',
-              transform: 'translateY(-50%) scale(1.1)'
-            }}
-            borderRadius="xl"
-            transition="all 0.2s ease"
-          >
-            <Icon as={showPassword ? FaEyeSlash : FaEye} boxSize={4} />
-          </Button>
-        )}
+        {children}
       </Box>
     </VStack>
   );
