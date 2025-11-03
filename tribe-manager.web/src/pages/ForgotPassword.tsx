@@ -1,0 +1,522 @@
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  Button,
+  VStack,
+  HStack,
+  Input,
+  Link,
+  Icon,
+  Badge,
+  SimpleGrid,
+  Circle,
+  Flex,
+} from '@chakra-ui/react';
+import { FaLeaf, FaShieldAlt, FaRocket, FaHeart, FaStar, FaCheckCircle, FaUsers, FaArrowLeft } from 'react-icons/fa';
+import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+export default function ForgotPassword() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Handle forgot password logic here
+    console.log('Forgot password form submitted:', formData);
+    setEmailSent(true);
+    setIsLoading(false);
+  };
+
+  return (
+    <Box minH="100vh" w="100vw" position="relative" overflow="hidden">
+      {/* Mobile Full Background */}
+      <Box
+        display={{ base: 'block', lg: 'none' }}
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        bgGradient="linear(135deg, #065f46 0%, #059669 25%, #10b981 50%, #34d399 75%, #6ee7b7 100%)"
+        zIndex={0}
+      />
+
+    <Flex minH="100vh" w="100%" direction={{ base: 'column', lg: 'row' }} position="relative" overflow="hidden">
+      {/* Left Side - Hero/Branding */}
+      <Box
+        display={{ base: 'none', lg: 'flex' }}
+        flex="0 0 35%"
+        minW="0"
+        position="relative"
+        alignItems="center"
+        justifyContent="center"
+        overflow="hidden"
+      >
+        {/* Animated Gradient Background */}
+        <Box
+          position="absolute"
+          top="-50%"
+          left="-50%"
+          right="-50%"
+          bottom="-50%"
+          bgGradient="conic(from 0deg, #065f46, #059669, #10b981, #34d399, #6ee7b7, #065f46)"
+          css={{
+            animation: 'gradientRotate 20s linear infinite',
+            '@keyframes gradientRotate': {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            }
+          }}
+        />
+
+        {/* Glass Overlay */}
+        <Box
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          bottom="0"
+          bg="rgba(6, 95, 70, 0.8)"
+          backdropFilter="blur(20px)"
+        />
+
+        {/* Floating Elements */}
+        <Box
+          position="absolute"
+          top="20%"
+          left="10%"
+          w="120px"
+          h="120px"
+          borderRadius="50%"
+          bg="rgba(52, 211, 153, 0.1)"
+          backdropFilter="blur(10px)"
+          border="1px solid rgba(52, 211, 153, 0.2)"
+          css={{
+            animation: 'float 6s ease-in-out infinite',
+            '@keyframes float': {
+              '0%, 100%': { transform: 'translateY(0px) scale(1)' },
+              '50%': { transform: 'translateY(-30px) scale(1.1)' }
+            }
+          }}
+        />
+
+        <Box
+          position="absolute"
+          bottom="30%"
+          right="15%"
+          w="80px"
+          h="80px"
+          transform="rotate(45deg)"
+          bg="rgba(16, 185, 129, 0.1)"
+          backdropFilter="blur(10px)"
+          border="1px solid rgba(16, 185, 129, 0.3)"
+          borderRadius="20px"
+          css={{
+            animation: 'floatReverse 8s ease-in-out infinite',
+            '@keyframes floatReverse': {
+              '0%, 100%': { transform: 'rotate(45deg) translateY(0px)' },
+              '50%': { transform: 'rotate(45deg) translateY(-20px)' }
+            }
+          }}
+        />
+
+        <VStack gap={10} textAlign="center" color="white" maxW="xl" px={8} position="relative" zIndex={1}>
+          <VStack gap={6}>
+            {/* Logo with Glow Effect */}
+            <Box
+              p={6}
+              bg="whiteAlpha.200"
+              borderRadius="3xl"
+              backdropFilter="blur(20px)"
+              border="2px solid"
+              borderColor="whiteAlpha.400"
+              shadow="0 0 60px rgba(52, 211, 153, 0.3)"
+              css={{
+                animation: 'logoGlow 4s ease-in-out infinite',
+                '@keyframes logoGlow': {
+                  '0%, 100%': { boxShadow: '0 0 60px rgba(52, 211, 153, 0.3)' },
+                  '50%': { boxShadow: '0 0 80px rgba(52, 211, 153, 0.5)' }
+                }
+              }}
+            >
+              <Icon as={FaLeaf} boxSize={16} color="white" />
+            </Box>
+
+            <VStack gap={4}>
+              <Heading size="4xl" fontWeight="black" textShadow="0 4px 20px rgba(0,0,0,0.4)" letterSpacing="-0.02em">
+                Reset Password 🔑
+              </Heading>
+              <Text fontSize="2xl" opacity={0.95} lineHeight="tall" textShadow="0 2px 10px rgba(0,0,0,0.3)" fontWeight="medium">
+                We'll help you get back to your family tribe
+              </Text>
+            </VStack>
+          </VStack>
+
+          {/* Enhanced Stats */}
+          <SimpleGrid columns={3} gap={6} w="full">
+            <VStack gap={2}>
+              <Circle size="60px" bg="whiteAlpha.200" backdropFilter="blur(10px)" border="1px solid" borderColor="whiteAlpha.300">
+                <Icon as={FaUsers} boxSize={6} color="white" />
+              </Circle>
+              <Text fontSize="2xl" fontWeight="black">10K+</Text>
+              <Text fontSize="sm" opacity={0.9}>Families</Text>
+            </VStack>
+            <VStack gap={2}>
+              <Circle size="60px" bg="whiteAlpha.200" backdropFilter="blur(10px)" border="1px solid" borderColor="whiteAlpha.300">
+                <Icon as={FaShieldAlt} boxSize={6} color="white" />
+              </Circle>
+              <Text fontSize="2xl" fontWeight="black">100%</Text>
+              <Text fontSize="sm" opacity={0.9}>Secure</Text>
+            </VStack>
+            <VStack gap={2}>
+              <Circle size="60px" bg="whiteAlpha.200" backdropFilter="blur(10px)" border="1px solid" borderColor="whiteAlpha.300">
+                <Icon as={FaStar} boxSize={6} color="white" />
+              </Circle>
+              <Text fontSize="2xl" fontWeight="black">4.9</Text>
+              <Text fontSize="sm" opacity={0.9}>Rating</Text>
+            </VStack>
+          </SimpleGrid>
+
+          {/* Testimonial */}
+          <Box
+            p={6}
+            bg="whiteAlpha.100"
+            borderRadius="2xl"
+            backdropFilter="blur(15px)"
+            border="1px solid"
+            borderColor="whiteAlpha.200"
+            maxW="md"
+          >
+            <Text fontSize="sm" opacity={0.9} fontStyle="italic" lineHeight="tall">
+              "The password reset was quick and secure. I was back to managing our family tasks in no time!"
+            </Text>
+            <HStack justify="center" mt={3} gap={1}>
+              {[...Array(5)].map((_, i) => (
+                <Icon key={i} as={FaStar} boxSize={3} color="yellow.300" />
+              ))}
+            </HStack>
+            <Text fontSize="xs" opacity={0.7} mt={2}>- Mark T., Father of 2</Text>
+          </Box>
+        </VStack>
+      </Box>
+
+      {/* Right Side - Forgot Password Form */}
+      <Box
+        flex="0 0 65%"
+        w="100%"
+        minW="0"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        position="relative"
+        bg={{ base: 'transparent', lg: 'white' }}
+      >
+        {/* Mobile Background with Glassmorphism */}
+        <Box
+          display={{ base: 'block', lg: 'none' }}
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          bottom="0"
+          bgGradient="linear(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(236, 253, 245, 0.9) 50%, rgba(209, 250, 229, 0.9) 100%)"
+          backdropFilter="blur(20px)"
+        />
+
+        <Container maxW="100%" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 8, md: 12 }} position="relative" zIndex={1} w="100%">
+          <Box maxW="100%" mx="auto" w="100%">
+          <VStack gap={8} w="100%">
+            {/* Mobile Header - Only shown on small screens */}
+            <VStack gap={4} textAlign="center" display={{ base: 'flex', lg: 'none' }}>
+              <HStack gap={2}>
+                <Box
+                  p={3}
+                  bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
+                  borderRadius="2xl"
+                  shadow="xl"
+                  transform="rotate(-5deg)"
+                  _hover={{ transform: 'rotate(0deg) scale(1.05)' }}
+                  transition="all 0.3s ease"
+                >
+                  <Icon as={FaLeaf} boxSize={6} color="white" />
+                </Box>
+                <VStack gap={0} align="start">
+                  <Heading size="xl" color="gray.800" fontWeight="black">
+                    Tribe Manager
+                  </Heading>
+                  <Badge
+                    bg="rgba(34, 197, 94, 0.1)"
+                    color="green.700"
+                    px={3}
+                    py={1}
+                    borderRadius="full"
+                    fontSize="xs"
+                    fontWeight="bold"
+                    letterSpacing="wide"
+                  >
+                    🏠 FAMILY HOME MANAGEMENT
+                  </Badge>
+                </VStack>
+              </HStack>
+            </VStack>
+
+            {/* Form Header */}
+            <VStack gap={3} textAlign="center">
+              <Heading as="h1" size={{ base: 'xl', md: '2xl' }} color="gray.800" fontWeight="black" letterSpacing="-0.02em">
+                {emailSent ? 'Check Your Email 📧' : 'Forgot Password? 🔑'}
+              </Heading>
+              <Text color="gray.600" fontSize="lg" fontWeight="medium">
+                {emailSent
+                  ? "We've sent password reset instructions to your email"
+                  : "Enter your email and we'll send you reset instructions"
+                }
+              </Text>
+            </VStack>
+
+            {/* Forgot Password Form */}
+            <Box
+              bg={{ base: 'rgba(255, 255, 255, 0.95)', lg: 'white' }}
+              backdropFilter={{ base: 'blur(20px)', lg: 'none' }}
+              p={{ base: 6, md: 8, lg: 10 }}
+              borderRadius="3xl"
+              shadow="0 32px 64px rgba(0, 0, 0, 0.12)"
+              border="1px solid"
+              borderColor={{ base: 'whiteAlpha.300', lg: 'gray.100' }}
+              w="full"
+              maxW="full"
+              position="relative"
+              overflow="hidden"
+              _before={{
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '6px',
+                bgGradient: 'linear(to-r, #059669, #10b981, #34d399)',
+                borderTopRadius: '3xl'
+              }}
+            >
+              {!emailSent ? (
+                <form onSubmit={handleSubmit}>
+                  <VStack gap={6}>
+                    <VStack gap={3} align="start" w="full">
+                      <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
+                        Email Address
+                      </Text>
+                      <Box position="relative" w="full">
+                        <Input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Enter your email address"
+                          size="lg"
+                          borderRadius="2xl"
+                          border="2px solid"
+                          borderColor="gray.200"
+                          bg="gray.50"
+                          _focus={{
+                            borderColor: 'green.400',
+                            boxShadow: '0 0 0 3px rgba(34, 197, 94, 0.1)',
+                            bg: 'white',
+                            transform: 'translateY(-1px)'
+                          }}
+                          _hover={{
+                            borderColor: 'green.300',
+                            bg: 'white'
+                          }}
+                          transition="all 0.2s ease"
+                          fontSize="md"
+                          fontWeight="500"
+                          required
+                        />
+                      </Box>
+                    </VStack>
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      w="full"
+                      h="64px"
+                      bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
+                      color="white"
+                      _hover={{
+                        transform: isLoading ? 'none' : 'translateY(-3px)',
+                        shadow: isLoading ? 'none' : '0 20px 40px rgba(34, 197, 94, 0.4)',
+                        bg: isLoading ? 'linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)' : 'linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%)',
+                      }}
+                      _active={{
+                        transform: isLoading ? 'none' : 'translateY(-1px)',
+                        shadow: isLoading ? 'none' : '0 10px 25px rgba(34, 197, 94, 0.3)'
+                      }}
+                      transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                      borderRadius="2xl"
+                      fontWeight="bold"
+                      fontSize="lg"
+                      letterSpacing="0.025em"
+                      position="relative"
+                      overflow="hidden"
+                      isLoading={isLoading}
+                      _disabled={{
+                        opacity: 1,
+                        cursor: 'not-allowed'
+                      }}
+                    >
+                      {isLoading ? (
+                        <HStack gap={3}>
+                          <Box
+                            w="20px"
+                            h="20px"
+                            border="2px solid"
+                            borderColor="white"
+                            borderTopColor="transparent"
+                            borderRadius="50%"
+                            css={{
+                              animation: 'spin 1s linear infinite',
+                              '@keyframes spin': {
+                                '0%': { transform: 'rotate(0deg)' },
+                                '100%': { transform: 'rotate(360deg)' }
+                              }
+                            }}
+                          />
+                          <Text>Sending Email...</Text>
+                        </HStack>
+                      ) : (
+                        <HStack gap={2}>
+                          <Icon as={FaLeaf} boxSize={5} />
+                          <Text>Send Reset Instructions</Text>
+                        </HStack>
+                      )}
+                    </Button>
+                  </VStack>
+                </form>
+              ) : (
+                <VStack gap={8} textAlign="center">
+                  <VStack gap={4}>
+                    <Circle size="80px" bg="green.100" color="green.600">
+                      <Icon as={FaCheckCircle} boxSize={10} />
+                    </Circle>
+                    <VStack gap={2}>
+                      <Heading size="lg" color="gray.800">
+                        Email Sent Successfully!
+                      </Heading>
+                      <Text color="gray.600" fontSize="md">
+                        Check your inbox and follow the instructions to reset your password.
+                      </Text>
+                    </VStack>
+                  </VStack>
+
+                  <Button
+                    as={RouterLink}
+                    to="/login"
+                    variant="outline"
+                    borderColor="green.200"
+                    borderWidth="2px"
+                    color="green.700"
+                    _hover={{
+                      bg: 'green.50',
+                      borderColor: 'green.300',
+                      transform: 'translateY(-2px)',
+                      shadow: '0 8px 20px rgba(34, 197, 94, 0.1)'
+                    }}
+                    _active={{ transform: 'translateY(0)' }}
+                    borderRadius="2xl"
+                    h="48px"
+                    fontWeight="semibold"
+                    transition="all 0.2s ease"
+                    px={8}
+                  >
+                    <HStack gap={2}>
+                      <Icon as={FaArrowLeft} boxSize={4} />
+                      <Text>Back to Login</Text>
+                    </HStack>
+                  </Button>
+                </VStack>
+              )}
+            </Box>
+
+            {/* Navigation Links */}
+            {!emailSent && (
+              <VStack gap={4}>
+                <HStack gap={2}>
+                  <Text color="gray.600" fontSize="sm">
+                    Remember your password?
+                  </Text>
+                  <Link
+                    as={RouterLink}
+                    to="/login"
+                    color="green.600"
+                    fontWeight="bold"
+                    fontSize="sm"
+                    _hover={{
+                      color: 'green.800',
+                      textDecoration: 'none',
+                      transform: 'scale(1.05)'
+                    }}
+                    transition="all 0.2s ease"
+                  >
+                    Sign In Here 🔑
+                  </Link>
+                </HStack>
+
+                <Text color="gray.500" fontSize="sm">
+                  Don't have an account?{' '}
+                  <Link
+                    as={RouterLink}
+                    to="/register"
+                    color="green.600"
+                    fontWeight="semibold"
+                    _hover={{ color: 'green.800', textDecoration: 'underline' }}
+                  >
+                    Create Your Tribe 🌱
+                  </Link>
+                </Text>
+              </VStack>
+            )}
+
+            {/* Back to Home */}
+            <HStack justify="center" pt={4}>
+              <Link
+                as={RouterLink}
+                to="/"
+                color="gray.500"
+                fontWeight="semibold"
+                fontSize="sm"
+                _hover={{
+                  color: 'green.600',
+                  textDecoration: 'none',
+                  transform: 'translateX(-2px)'
+                }}
+                transition="all 0.2s ease"
+              >
+                ← Back to Home
+              </Link>
+            </HStack>
+          </VStack>
+          </Box>
+        </Container>
+      </Box>
+    </Flex>
+    </Box>
+  );
+}

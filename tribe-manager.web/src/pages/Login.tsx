@@ -512,7 +512,8 @@ export default function Login() {
                       </Text>
                     </HStack>
                     <Link
-                      href="#"
+                      as={RouterLink}
+                      to="/forgot-password"
                       fontSize="sm"
                       color="green.600"
                       fontWeight="semibold"
