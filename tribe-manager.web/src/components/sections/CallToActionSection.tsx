@@ -78,7 +78,12 @@ export const CallToActionSection = () => {
         <Icon as={FaSeedling} boxSize={10} color="green.100" opacity={0.5} />
       </Box>
 
-      <Container maxW="full" px={{ base: 4, md: 8 }} position="relative" zIndex={1}>
+      <Container
+        maxW="full"
+        px={{ base: 4, md: 8 }}
+        position="relative"
+        zIndex={1}
+      >
         <VStack gap={12} textAlign="center">
           {/* Badge */}
           <Badge
@@ -125,9 +130,9 @@ export const CallToActionSection = () => {
               fontWeight="medium"
               textShadow="0 2px 10px rgba(0,0,0,0.2)"
             >
-              🏠 Join thousands of families creating more organized, harmonious homes.
-              Start managing tasks, earning rewards, and building stronger family
-              connections with Tribe Manager today.
+              🏠 Join thousands of families creating more organized, harmonious
+              homes. Start managing tasks, earning rewards, and building
+              stronger family connections with Tribe Manager today.
             </Text>
           </VStack>
 
