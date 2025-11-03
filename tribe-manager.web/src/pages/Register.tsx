@@ -550,11 +550,11 @@ Family Size
                       />
                       <Text fontSize="sm" color="gray.600">
                         I agree to the{' '}
-                        <Link as={RouterLink} to="/terms" color="green.600" fontWeight="semibold">
+                        <Link as={RouterLink} to="/terms" color="green.600" fontWeight="semibold" target="_blank" rel="noopener noreferrer">
                           Terms of Service
                         </Link>{' '}
                         and{' '}
-                        <Link as={RouterLink} to="/privacy" color="green.600" fontWeight="semibold">
+                        <Link as={RouterLink} to="/privacy" color="green.600" fontWeight="semibold" target="_blank" rel="noopener noreferrer">
                           Privacy Policy
                         </Link>
                       </Text>
