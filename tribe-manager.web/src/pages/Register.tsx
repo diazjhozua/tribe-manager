@@ -6,7 +6,6 @@ import {
   Button,
   VStack,
   HStack,
-  Input,
   Link,
   Icon,
   Badge,
@@ -14,13 +13,12 @@ import {
   Circle,
   Flex,
 } from '@chakra-ui/react';
-import { FaLeaf, FaEye, FaEyeSlash, FaUsers, FaHome, FaShieldAlt, FaRocket, FaStar, FaCheck, FaUser, FaLock } from 'react-icons/fa';
+import { FaLeaf, FaUsers, FaHome, FaShieldAlt, FaRocket, FaStar, FaCheck, FaUser, FaLock } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { FormInput } from '../components/ui';
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [currentStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -409,72 +407,34 @@ export default function Register() {
                     </HStack>
 
                     <SimpleGrid columns={{ base: 1, sm: 2 }} gap={4} w="full">
-                      <VStack gap={2} align="start" w="full">
-                        <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-First Name
-                        </Text>
-                        <Input
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          placeholder="Enter your first name"
-                          size="lg"
-                          borderRadius="2xl"
-                          border="2px solid"
-                          borderColor="green.100"
-                          _focus={{
-                            borderColor: 'green.400',
-                            boxShadow: '0 0 0 1px rgba(34, 197, 94, 0.2)',
-                          }}
-                          _hover={{ borderColor: 'green.200' }}
-                          required
-                        />
-                      </VStack>
-
-                      <VStack gap={2} align="start" w="full">
-                        <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-Last Name
-                        </Text>
-                        <Input
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          placeholder="Enter your last name"
-                          size="lg"
-                          borderRadius="2xl"
-                          border="2px solid"
-                          borderColor="green.100"
-                          _focus={{
-                            borderColor: 'green.400',
-                            boxShadow: '0 0 0 1px rgba(34, 197, 94, 0.2)',
-                          }}
-                          _hover={{ borderColor: 'green.200' }}
-                          required
-                        />
-                      </VStack>
-                    </SimpleGrid>
-
-                    <VStack gap={2} align="start" w="full">
-                      <Text color="gray.700" fontWeight="semibold" fontSize="sm">Email Address
-                      </Text>
-                      <Input
-                        name="email"
-                        type="email"
-                        value={formData.email}
+                      <FormInput
+                        label="First Name"
+                        name="firstName"
+                        value={formData.firstName}
                         onChange={handleInputChange}
-                        placeholder="Enter your email address"
-                        size="lg"
-                        borderRadius="2xl"
-                        border="2px solid"
-                        borderColor="green.100"
-                        _focus={{
-                          borderColor: 'green.400',
-                          boxShadow: '0 0 0 1px rgba(34, 197, 94, 0.2)',
-                        }}
-                        _hover={{ borderColor: 'green.200' }}
+                        placeholder="Enter your first name"
                         required
                       />
-                    </VStack>
+
+                      <FormInput
+                        label="Last Name"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        placeholder="Enter your last name"
+                        required
+                      />
+                    </SimpleGrid>
+
+                    <FormInput
+                      label="Email Address"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Enter your email address"
+                      required
+                    />
                   </VStack>
 
                   <Box w="full" h="1px" bg="gray.200" />
@@ -489,27 +449,14 @@ Last Name
                     </HStack>
 
                     <SimpleGrid columns={{ base: 1, sm: 2 }} gap={4} w="full">
-                      <VStack gap={2} align="start" w="full">
-                        <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-Family/Tribe Name
-                        </Text>
-                        <Input
-                          name="familyName"
-                          value={formData.familyName}
-                          onChange={handleInputChange}
-                          placeholder="e.g., The Smith Family"
-                          size="lg"
-                          borderRadius="2xl"
-                          border="2px solid"
-                          borderColor="green.100"
-                          _focus={{
-                            borderColor: 'green.400',
-                            boxShadow: '0 0 0 1px rgba(34, 197, 94, 0.2)',
-                          }}
-                          _hover={{ borderColor: 'green.200' }}
-                          required
-                        />
-                      </VStack>
+                      <FormInput
+                        label="Family/Tribe Name"
+                        name="familyName"
+                        value={formData.familyName}
+                        onChange={handleInputChange}
+                        placeholder="e.g., The Smith Family"
+                        required
+                      />
 
                       <VStack gap={2} align="start" w="full">
                         <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
@@ -551,83 +498,27 @@ Family Size
                     </Heading>
 
                     <SimpleGrid columns={{ base: 1, sm: 2 }} gap={4} w="full">
-                      <VStack gap={2} align="start" w="full">
-                        <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-Password
-                        </Text>
-                        <Box position="relative">
-                          <Input
-                            name="password"
-                            type={showPassword ? 'text' : 'password'}
-                            value={formData.password}
-                            onChange={handleInputChange}
-                            placeholder="Create a strong password"
-                            size="lg"
-                            borderRadius="2xl"
-                            border="2px solid"
-                            borderColor="green.100"
-                            _focus={{
-                              borderColor: 'green.400',
-                              boxShadow: '0 0 0 1px rgba(34, 197, 94, 0.2)',
-                            }}
-                            _hover={{ borderColor: 'green.200' }}
-                            pr="12"
-                            required
-                          />
-                          <Button
-                            position="absolute"
-                            right="2"
-                            top="50%"
-                            transform="translateY(-50%)"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setShowPassword(!showPassword)}
-                            color="gray.500"
-                            _hover={{ color: 'green.600' }}
-                          >
-                            <Icon as={showPassword ? FaEyeSlash : FaEye} />
-                          </Button>
-                        </Box>
-                      </VStack>
+                      <FormInput
+                        label="Password"
+                        name="password"
+                        type="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        placeholder="Create a strong password"
+                        showPasswordToggle
+                        required
+                      />
 
-                      <VStack gap={2} align="start" w="full">
-                        <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-Confirm Password
-                        </Text>
-                        <Box position="relative">
-                          <Input
-                            name="confirmPassword"
-                            type={showConfirmPassword ? 'text' : 'password'}
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
-                            placeholder="Confirm your password"
-                            size="lg"
-                            borderRadius="2xl"
-                            border="2px solid"
-                            borderColor="green.100"
-                            _focus={{
-                              borderColor: 'green.400',
-                              boxShadow: '0 0 0 1px rgba(34, 197, 94, 0.2)',
-                            }}
-                            _hover={{ borderColor: 'green.200' }}
-                            pr="12"
-                            required
-                          />
-                          <Button
-                            position="absolute"
-                            right="2"
-                            top="50%"
-                            transform="translateY(-50%)"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            color="gray.500"
-                            _hover={{ color: 'green.600' }}
-                          >
-                            <Icon as={showConfirmPassword ? FaEyeSlash : FaEye} />
-                          </Button>
-                        </Box>
-                      </VStack>
+                      <FormInput
+                        label="Confirm Password"
+                        name="confirmPassword"
+                        type="password"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        placeholder="Confirm your password"
+                        showPasswordToggle
+                        required
+                      />
                     </SimpleGrid>
                   </VStack>
 

@@ -6,7 +6,6 @@ import {
   Button,
   VStack,
   HStack,
-  Input,
   Link,
   Icon,
   Badge,
@@ -17,6 +16,7 @@ import {
 import { FaLeaf, FaShieldAlt, FaRocket, FaHeart, FaStar, FaCheckCircle, FaUsers, FaArrowLeft } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { FormInput } from '../components/ui';
 
 export default function ForgotPassword() {
   const [isLoading, setIsLoading] = useState(false);
@@ -319,39 +319,15 @@ export default function ForgotPassword() {
               {!emailSent ? (
                 <form onSubmit={handleSubmit}>
                   <VStack gap={6}>
-                    <VStack gap={3} align="start" w="full">
-                      <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-                        Email Address
-                      </Text>
-                      <Box position="relative" w="full">
-                        <Input
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="Enter your email address"
-                          size="lg"
-                          borderRadius="2xl"
-                          border="2px solid"
-                          borderColor="gray.200"
-                          bg="gray.50"
-                          _focus={{
-                            borderColor: 'green.400',
-                            boxShadow: '0 0 0 3px rgba(34, 197, 94, 0.1)',
-                            bg: 'white',
-                            transform: 'translateY(-1px)'
-                          }}
-                          _hover={{
-                            borderColor: 'green.300',
-                            bg: 'white'
-                          }}
-                          transition="all 0.2s ease"
-                          fontSize="md"
-                          fontWeight="500"
-                          required
-                        />
-                      </Box>
-                    </VStack>
+                    <FormInput
+                      label="Email Address"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Enter your email address"
+                      required
+                    />
 
                     <Button
                       type="submit"

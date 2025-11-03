@@ -6,7 +6,6 @@ import {
   Button,
   VStack,
   HStack,
-  Input,
   Link,
   Icon,
   Badge,
@@ -14,12 +13,12 @@ import {
   SimpleGrid,
   Circle,
 } from '@chakra-ui/react';
-import { FaLeaf, FaEye, FaEyeSlash, FaShieldAlt, FaRocket, FaHeart, FaStar, FaCheckCircle, FaUsers } from 'react-icons/fa';
+import { FaLeaf, FaShieldAlt, FaRocket, FaHeart, FaStar, FaCheckCircle, FaUsers } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { FormInput } from '../components/ui';
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -406,93 +405,26 @@ export default function Login() {
             >
               <form onSubmit={handleSubmit}>
                 <VStack gap={6}>
-                  <VStack gap={3} align="start" w="full">
-                    <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-                      Email Address
-                    </Text>
-                    <Box position="relative" w="full">
-                      <Input
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="Enter your email address"
-                        size="lg"
-                        borderRadius="2xl"
-                        border="2px solid"
-                        borderColor="gray.200"
-                        bg="gray.50"
-                        _focus={{
-                          borderColor: 'green.400',
-                          boxShadow: '0 0 0 3px rgba(34, 197, 94, 0.1)',
-                          bg: 'white',
-                          transform: 'translateY(-1px)'
-                        }}
-                        _hover={{
-                          borderColor: 'green.300',
-                          bg: 'white'
-                        }}
-                        transition="all 0.2s ease"
-                        fontSize="md"
-                        fontWeight="500"
-                        required
-                      />
-                    </Box>
-                  </VStack>
+                  <FormInput
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Enter your email address"
+                    required
+                  />
 
-                  <VStack gap={3} align="start" w="full">
-                    <Text color="gray.700" fontWeight="600" fontSize="sm" letterSpacing="0.025em">
-                      Password
-                    </Text>
-                    <Box position="relative" w="full">
-                      <Input
-                        name="password"
-                        type={showPassword ? 'text' : 'password'}
-                        value={formData.password}
-                        onChange={handleInputChange}
-                        placeholder="Enter your password"
-                        size="lg"
-                        borderRadius="2xl"
-                        border="2px solid"
-                        borderColor="gray.200"
-                        bg="gray.50"
-                        _focus={{
-                          borderColor: 'green.400',
-                          boxShadow: '0 0 0 3px rgba(34, 197, 94, 0.1)',
-                          bg: 'white',
-                          transform: 'translateY(-1px)'
-                        }}
-                        _hover={{
-                          borderColor: 'green.300',
-                          bg: 'white'
-                        }}
-                        transition="all 0.2s ease"
-                        fontSize="md"
-                        fontWeight="500"
-                        pr="12"
-                        required
-                      />
-                      <Button
-                        position="absolute"
-                        right="3"
-                        top="50%"
-                        transform="translateY(-50%)"
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setShowPassword(!showPassword)}
-                        color="gray.400"
-                        _hover={{
-                          color: 'green.600',
-                          bg: 'green.50',
-                          transform: 'translateY(-50%) scale(1.1)'
-                        }}
-                        borderRadius="xl"
-                        transition="all 0.2s ease"
-                      >
-                        <Icon as={showPassword ? FaEyeSlash : FaEye} boxSize={4} />
-                      </Button>
-                    </Box>
-                  </VStack>
+                  <FormInput
+                    label="Password"
+                    name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    placeholder="Enter your password"
+                    showPasswordToggle
+                    required
+                  />
 
                   <HStack justify="space-between" w="full">
                     <HStack gap={2}>
