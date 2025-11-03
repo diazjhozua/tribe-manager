@@ -153,33 +153,51 @@ export const Header = () => {
             </Link>
           </HStack>
 
-          {/* CTA Button */}
-          <Button
-            as="a"
-            href="/#cta"
-            display={{ base: 'none', md: 'flex' }}
-            size="sm"
-            bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
-            color="white"
-            _hover={{
-              transform: 'translateY(-2px) scale(1.05)',
-              shadow: '0 10px 25px rgba(34, 197, 94, 0.3)',
-              bg: 'linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%)',
-              color: 'white',
-            }}
-            _active={{
-              transform: 'translateY(0) scale(1)',
-            }}
-            transition="all 0.3s ease"
-            borderRadius="2xl"
-            fontWeight="bold"
-            px={6}
-            fontSize="sm"
-            border="2px solid"
-            borderColor="green.200"
-          >
-            🏠 Start Family Tribe
-          </Button>
+          {/* Auth Buttons */}
+          <HStack gap={2} display={{ base: 'none', md: 'flex' }}>
+            <Button
+              as="a"
+              href="/login"
+              variant="ghost"
+              size="sm"
+              color="gray.700"
+              _hover={{
+                color: 'green.700',
+                bg: 'green.50',
+                transform: 'translateY(-1px)',
+              }}
+              transition="all 0.3s ease"
+              borderRadius="xl"
+              fontWeight="semibold"
+            >
+              Sign In
+            </Button>
+            <Button
+              as="a"
+              href="/register"
+              size="sm"
+              bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
+              color="white"
+              _hover={{
+                transform: 'translateY(-2px) scale(1.05)',
+                shadow: '0 10px 25px rgba(34, 197, 94, 0.3)',
+                bg: 'linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%)',
+                color: 'white',
+              }}
+              _active={{
+                transform: 'translateY(0) scale(1)',
+              }}
+              transition="all 0.3s ease"
+              borderRadius="2xl"
+              fontWeight="bold"
+              px={6}
+              fontSize="sm"
+              border="2px solid"
+              borderColor="green.200"
+            >
+              🏠 Start Family Tribe
+            </Button>
+          </HStack>
 
           {/* Mobile Menu Toggle */}
           <IconButton
@@ -299,25 +317,43 @@ export const Header = () => {
               <Text fontSize="lg">🚀</Text>
               Get Started
             </Link>
-            <Button
-              as="a"
-              href="/#cta"
-              mt={3}
-              size="sm"
-              bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
-              color="white"
-              _hover={{
-                bg: 'linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%)',
-                transform: 'scale(1.02)',
-                color: 'white',
-              }}
-              borderRadius="xl"
-              fontWeight="bold"
-              border="2px solid"
-              borderColor="green.200"
-            >
-              🏠 Start Family Tribe
-            </Button>
+            <HStack gap={2} mt={3} w="full">
+              <Button
+                as="a"
+                href="/login"
+                flex={1}
+                variant="outline"
+                borderColor="green.200"
+                color="green.700"
+                _hover={{
+                  bg: 'green.50',
+                  borderColor: 'green.300',
+                }}
+                borderRadius="xl"
+                fontWeight="semibold"
+              >
+                Sign In
+              </Button>
+              <Button
+                as="a"
+                href="/register"
+                flex={1}
+                size="sm"
+                bg="linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)"
+                color="white"
+                _hover={{
+                  bg: 'linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%)',
+                  transform: 'scale(1.02)',
+                  color: 'white',
+                }}
+                borderRadius="xl"
+                fontWeight="bold"
+                border="2px solid"
+                borderColor="green.200"
+              >
+                🏠 Join Tribe
+              </Button>
+            </HStack>
           </VStack>
         )}
       </Container>
