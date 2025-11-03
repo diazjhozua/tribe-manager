@@ -352,7 +352,7 @@ export default function ForgotPassword() {
                       letterSpacing="0.025em"
                       position="relative"
                       overflow="hidden"
-                      isLoading={isLoading}
+                      loading={isLoading}
                       _disabled={{
                         opacity: 1,
                         cursor: 'not-allowed'
