@@ -51,15 +51,21 @@ export const FormInput = ({
           border="2px solid"
           borderColor="gray.200"
           bg="gray.50"
+          color="gray.800"
+          _placeholder={{
+            color: 'gray.400'
+          }}
           _focus={{
             borderColor: 'green.400',
             boxShadow: '0 0 0 3px rgba(34, 197, 94, 0.1)',
             bg: 'white',
+            color: 'gray.800',
             transform: 'translateY(-1px)'
           }}
           _hover={{
             borderColor: 'green.300',
-            bg: 'white'
+            bg: 'white',
+            color: 'gray.800'
           }}
           transition="all 0.2s ease"
           fontSize="md"
