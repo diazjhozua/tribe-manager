@@ -7,6 +7,7 @@ This document defines the core domain aggregates for the Tribe Manager applicati
 - [User Aggregate](#user-aggregate)
 - [Tribe Aggregate](#tribe-aggregate)
 - [Task Aggregate](#task-aggregate)
+- [Shop Aggregate](#shop-aggregate)
 - [Aggregate Relationships](#aggregate-relationships)
 - [Business Rules](#business-rules)
 
@@ -253,6 +254,144 @@ class Task
 }
 ```
 
+## Shop Aggregate
+
+The Shop aggregate represents a rewards marketplace where tribe members can spend their earned points on various rewards like leisure time, equipment, experiences, and perks.
+
+```csharp
+class Shop
+{
+    // TODO: Add methods for inventory management, purchase processing, etc.
+}
+```
+
+### Properties:
+- **Identity**: Unique identifier linked to a tribe
+- **Catalog**: Collection of available reward items
+- **Configuration**: Shop settings and rules
+- **Purchase History**: Transaction records
+
+### Reward Categories:
+- **Leisure**: Extra break time, flexible hours, remote work days
+- **Equipment**: Office supplies, tech gadgets, ergonomic items
+- **Experience**: Training courses, conference tickets, team events
+- **Perks**: Parking spots, lunch vouchers, gift cards
+
+```json
+{
+    "id": { "value": "shop-550e8400-e29b-41d4-a716-446655440002" },
+    "tribeId": { "value": "tribe-550e8400-e29b-41d4-a716-446655440001" },
+    "name": "Frontend Team Rewards Shop",
+    "description": "Exclusive rewards for our frontend engineering team",
+    "isActive": true,
+    "settings": {
+        "allowPartialPointSpending": false,
+        "requireManagerApproval": true,
+        "maxPendingPurchases": 3,
+        "pointExpirationDays": 365
+    },
+    "rewardItems": [
+        {
+            "id": { "value": "reward-11111111-1111-1111-1111-111111111111" },
+            "name": "Extra 2 Hours Lunch Break",
+            "description": "Extend your lunch break by 2 hours on any day of your choice",
+            "category": "Leisure",
+            "type": "Service",
+            "pointsCost": 15,
+            "isAvailable": true,
+            "stockQuantity": null,
+            "imageUrl": "/images/rewards/lunch-break.png",
+            "validityDays": 30,
+            "requiresApproval": true,
+            "restrictions": ["Cannot be used during sprint deadlines", "Must be requested 24h in advance"],
+            "createdDateTime": "2024-12-01T09:00:00.0000000Z"
+        },
+        {
+            "id": { "value": "reward-22222222-2222-2222-2222-222222222222" },
+            "name": "Work From Home Day",
+            "description": "One full day of remote work flexibility",
+            "category": "Leisure",
+            "type": "Service",
+            "pointsCost": 8,
+            "isAvailable": true,
+            "stockQuantity": null,
+            "imageUrl": "/images/rewards/wfh-day.png",
+            "validityDays": 60,
+            "requiresApproval": false,
+            "restrictions": ["Subject to team meeting schedule"],
+            "createdDateTime": "2024-12-01T09:00:00.0000000Z"
+        },
+        {
+            "id": { "value": "reward-33333333-3333-3333-3333-333333333333" },
+            "name": "Mechanical Keyboard",
+            "description": "Premium mechanical keyboard for enhanced productivity",
+            "category": "Equipment",
+            "type": "Physical",
+            "pointsCost": 45,
+            "isAvailable": true,
+            "stockQuantity": 5,
+            "imageUrl": "/images/rewards/mechanical-keyboard.png",
+            "validityDays": 90,
+            "requiresApproval": true,
+            "restrictions": ["Limited to one per member per year"],
+            "createdDateTime": "2024-12-01T09:00:00.0000000Z"
+        },
+        {
+            "id": { "value": "reward-44444444-4444-4444-4444-444444444444" },
+            "name": "Conference Ticket",
+            "description": "Ticket to a frontend development conference of your choice",
+            "category": "Experience",
+            "type": "Service",
+            "pointsCost": 85,
+            "isAvailable": true,
+            "stockQuantity": 2,
+            "imageUrl": "/images/rewards/conference.png",
+            "validityDays": 180,
+            "requiresApproval": true,
+            "restrictions": ["Conference must be approved by tribe leader", "Travel expenses not included"],
+            "createdDateTime": "2024-12-01T09:00:00.0000000Z"
+        }
+    ],
+    "purchases": [
+        {
+            "id": { "value": "purchase-55555555-5555-5555-5555-555555555555" },
+            "userId": { "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890" },
+            "rewardItemId": { "value": "reward-22222222-2222-2222-2222-222222222222" },
+            "pointsSpent": 8,
+            "status": "Redeemed",
+            "purchaseDateTime": "2025-01-02T10:30:00.0000000Z",
+            "approvalDateTime": "2025-01-02T10:30:00.0000000Z",
+            "approvedByUserId": null,
+            "redeemedDateTime": "2025-01-03T09:00:00.0000000Z",
+            "expirationDateTime": "2025-03-04T10:30:00.0000000Z",
+            "notes": "Used for doctor appointment day"
+        },
+        {
+            "id": { "value": "purchase-66666666-6666-6666-6666-666666666666" },
+            "userId": { "value": "b2c3d4e5-f6g7-8901-bcde-f23456789012" },
+            "rewardItemId": { "value": "reward-11111111-1111-1111-1111-111111111111" },
+            "pointsSpent": 15,
+            "status": "Pending",
+            "purchaseDateTime": "2025-01-04T14:15:00.0000000Z",
+            "approvalDateTime": null,
+            "approvedByUserId": null,
+            "redeemedDateTime": null,
+            "expirationDateTime": "2025-02-03T14:15:00.0000000Z",
+            "notes": "Requested for Friday team celebration"
+        }
+    ],
+    "statistics": {
+        "totalRewards": 4,
+        "totalPurchases": 2,
+        "totalPointsSpent": 23,
+        "mostPopularRewardId": { "value": "reward-22222222-2222-2222-2222-222222222222" },
+        "averagePointsPerPurchase": 11.5
+    },
+    "createdDateTime": "2024-12-01T09:00:00.0000000Z",
+    "updatedDateTime": "2025-01-04T14:15:00.0000000Z"
+}
+```
+
 ---
 
 ## Aggregate Relationships
@@ -271,6 +410,16 @@ class Task
 - **Assignment**: Task.assignedToUserIds array supports multiple assignees
 - **Creation**: Task.createdByUserId tracks task creator
 - **Comments**: Task.comments contain userId references for authorship
+
+### Tribe ↔ Shop (One-to-One)
+- **Tribe Side**: Each tribe has exactly one shop instance
+- **Shop Side**: Shop.tribeId references the owning tribe
+- **Constraint**: A shop belongs to exactly one tribe
+
+### User ↔ Shop (Many-to-Many via Purchases)
+- **Purchase History**: Shop.purchases contain userId references
+- **Point Spending**: Users spend points earned in tribe on shop rewards
+- **Redemption**: Users redeem purchased rewards through shop
 
 ---
 
@@ -303,9 +452,20 @@ class Task
 5. **Sprint Cycles**: Current sprint points reset at sprint boundaries
 6. **Historical Data**: Point history maintains full audit trail of achievements
 
+### Shop Management
+1. **Point Balance**: Users can only purchase rewards if they have sufficient points in the tribe
+2. **Stock Management**: Physical rewards must respect inventory limits
+3. **Approval Workflow**: High-value or restricted rewards require manager approval
+4. **Expiration Logic**: Purchased rewards expire based on validityDays configuration
+5. **Purchase Limits**: Users cannot exceed maxPendingPurchases setting
+6. **Tribe Membership**: Only tribe members can purchase from the tribe's shop
+
 ### Cross-Aggregate Rules
 1. **Task Assignment**: Users can only be assigned to tasks in tribes they belong to
 2. **Permission Inheritance**: Task permissions are inherited from tribe membership
 3. **Data Consistency**: Removing a user from a tribe must handle their task assignments
-4. **Audit Trail**: All aggregate changes must update timestamp fields
+4. **Point Integration**: Points earned in tribe tasks can be spent in tribe shop
+5. **Shop Access**: Shop availability is tied to tribe membership status
+6. **Purchase Authorization**: Shop purchases require validation against current tribe point balance
+7. **Audit Trail**: All aggregate changes must update timestamp fields
 
