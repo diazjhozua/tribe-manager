@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree \"C:\\Users\\jhozuad\\Documents\\projects\\tribe-manager\\tribe-manager.domain\" /F)",
+      "Bash(dotnet build)",
+      "Bash(move TaskStatus.cs WorkItemStatus.cs)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
