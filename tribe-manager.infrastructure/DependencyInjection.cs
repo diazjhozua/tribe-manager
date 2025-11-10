@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using tribe_manager.application.Common.Interfaces.Authentication;
 using tribe_manager.application.Common.Interfaces.Services;
 using tribe_manager.infrastructure.Authentication;
+using tribe_manager.infrastructure.Persistence;
 using tribe_manager.infrastructure.Services;
 
 namespace tribe_manager.infrastructure
@@ -14,7 +16,18 @@ namespace tribe_manager.infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager configuration)
         {
             services.AddAuthentication(configuration);
+            services.AddPersistence(configuration);
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();   
+
+            return services;
+        }
+
+        public static IServiceCollection AddPersistence(
+            this IServiceCollection services,
+            ConfigurationManager configuration)
+        {
+            services.AddDbContext<TribeManagerDbContext>(
+                options => options.UseSqlServer(configuration["DbConnection"]));
 
             return services;
         }
