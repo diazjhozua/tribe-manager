@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using tribe_manager.application.Common.Interfaces.Authentication;
+using tribe_manager.application.Common.Interfaces.Persistence;
 using tribe_manager.application.Common.Interfaces.Services;
 using tribe_manager.infrastructure.Authentication;
 using tribe_manager.infrastructure.Persistence;
@@ -28,6 +29,8 @@ namespace tribe_manager.infrastructure
         {
             services.AddDbContext<TribeManagerDbContext>(
                 options => options.UseSqlServer(configuration["DbConnection"]));
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
