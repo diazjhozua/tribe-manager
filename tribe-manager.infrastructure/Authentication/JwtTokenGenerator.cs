@@ -2,9 +2,11 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using tribe_manager.application.Common.Interfaces.Authentication;
 using tribe_manager.application.Common.Interfaces.Services;
+using tribe_manager.domain.User.ValueObjects;
 
 namespace tribe_manager.infrastructure.Authentication
 {
@@ -13,7 +15,7 @@ namespace tribe_manager.infrastructure.Authentication
         private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
         private readonly JwtSettings _jwtSettings = jwtSettings.Value;
 
-        public string GenerateToken(Guid userId, string firstName, string lastName)
+        public string GenerateToken(UserId userId, string firstName, string lastName)
         {
             SigningCredentials signingCredentials = new(
                 new SymmetricSecurityKey(
@@ -36,6 +38,46 @@ namespace tribe_manager.infrastructure.Authentication
                 signingCredentials: signingCredentials);
 
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
+        }
+
+        public (string passwordHash, string salt) GeneratePasswordHash(string password)
+        {
+            // Generate a random salt
+            using RandomNumberGenerator rng = RandomNumberGenerator.Create();
+            byte[] saltBytes = new byte[32];
+            rng.GetBytes(saltBytes);
+            string salt = Convert.ToBase64String(saltBytes);
+
+            // Hash the password with the salt using PBKDF2
+            using Rfc2898DeriveBytes pbkdf2 = new(password, saltBytes, 10000, HashAlgorithmName.SHA256);
+            byte[] hashBytes = pbkdf2.GetBytes(32);
+            string passwordHash = Convert.ToBase64String(hashBytes);
+
+            return (passwordHash, salt);
+        }
+
+        public bool VerifyPassword(string password, string storedHash, string storedSalt)
+        {
+            try
+            {
+                // Convert stored salt back to bytes
+                byte[] saltBytes = Convert.FromBase64String(storedSalt);
+
+                // Hash the provided password with the stored salt
+                using Rfc2898DeriveBytes pbkdf2 = new(password, saltBytes, 10000, HashAlgorithmName.SHA256);
+                byte[] hashBytes = pbkdf2.GetBytes(32);
+                string computedHash = Convert.ToBase64String(hashBytes);
+
+                // Compare hashes using secure comparison
+                return CryptographicOperations.FixedTimeEquals(
+                    Convert.FromBase64String(storedHash),
+                    Convert.FromBase64String(computedHash));
+            }
+            catch
+            {
+                // If any conversion fails, password is invalid
+                return false;
+            }
         }
     }
 }
