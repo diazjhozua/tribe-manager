@@ -10,6 +10,13 @@ public sealed class TaskComment : Entity<TaskId>
     public string Content { get; private set; }
     public DateTime CreatedDateTime { get; private set; }
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private TaskComment() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
+
     private TaskComment(
         TaskId id,
         UserId userId,

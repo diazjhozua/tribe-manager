@@ -12,6 +12,13 @@ public sealed class TribeMember : Entity<UserId>
     public DateTime JoinedDateTime { get; private set; }
     public PointsEarned PointsEarned { get; private set; }
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private TribeMember() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
+
     private TribeMember(
         UserId userId,
         MemberRole role,

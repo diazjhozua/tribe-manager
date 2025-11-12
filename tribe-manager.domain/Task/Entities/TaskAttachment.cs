@@ -13,6 +13,13 @@ public sealed class TaskAttachment : Entity<TaskId>
     public long FileSizeBytes { get; private set; }
     public string? ContentType { get; private set; }
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private TaskAttachment() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
+
     private TaskAttachment(
         TaskId id,
         string fileName,

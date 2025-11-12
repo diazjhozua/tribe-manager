@@ -13,6 +13,13 @@ public sealed class Subtask : Entity<TaskId>
     public UserId? CompletedByUserId { get; private set; }
     public bool PointsAwarded { get; private set; }
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private Subtask() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
+
     private Subtask(
         TaskId id,
         string title,

@@ -4,9 +4,16 @@ namespace tribe_manager.domain.User.ValueObjects;
 
 public sealed class SecuritySettings : ValueObject
 {
-    public bool TwoFactorEnabled { get; }
-    public DateTime LastPasswordChange { get; }
-    public int SessionTimeoutMinutes { get; }
+    public bool TwoFactorEnabled { get; private set; }
+    public DateTime LastPasswordChange { get; private set; }
+    public int SessionTimeoutMinutes { get; private set; }
+
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private SecuritySettings()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
 
     private SecuritySettings(
         bool twoFactorEnabled,

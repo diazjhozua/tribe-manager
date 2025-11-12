@@ -4,12 +4,19 @@ namespace tribe_manager.domain.User.ValueObjects;
 
 public sealed class UserProfile : ValueObject
 {
-    public string FirstName { get; }
-    public string LastName { get; }
-    public string? DisplayName { get; }
-    public string? Bio { get; }
-    public string? AvatarUrl { get; }
-    public string? Timezone { get; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+    public string? DisplayName { get; private set; }
+    public string? Bio { get; private set; }
+    public string? AvatarUrl { get; private set; }
+    public string? Timezone { get; private set; }
+
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private UserProfile()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
 
     private UserProfile(
         string firstName,

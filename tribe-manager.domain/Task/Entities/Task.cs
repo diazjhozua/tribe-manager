@@ -33,6 +33,18 @@ public sealed class Task : AggregateRoot<TaskId>
     public IReadOnlyList<TaskAttachment> Attachments => _attachments.AsReadOnly();
     public IReadOnlyList<Subtask> Subtasks => _subtasks.AsReadOnly();
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private Task() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+        _assignedToUserIds = new List<UserId>();
+        _tags = new List<string>();
+        _comments = new List<TaskComment>();
+        _attachments = new List<TaskAttachment>();
+        _subtasks = new List<Subtask>();
+    }
+
     private Task(
         TaskId id,
         string title,

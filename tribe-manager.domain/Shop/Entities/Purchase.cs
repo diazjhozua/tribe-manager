@@ -18,6 +18,13 @@ public sealed class Purchase : Entity<PurchaseId>
     public DateTime ExpirationDateTime { get; private set; }
     public string? Notes { get; private set; }
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private Purchase() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
+
     private Purchase(
         PurchaseId id,
         UserId userId,

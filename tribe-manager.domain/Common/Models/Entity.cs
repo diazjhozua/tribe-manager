@@ -1,9 +1,22 @@
 ﻿namespace tribe_manager.domain.Common.Models
 {
-    public abstract class Entity<TId>(TId id) : IEquatable<Entity<TId>>
+    public abstract class Entity<TId> : IEquatable<Entity<TId>>
         where TId : notnull
     {
-        public TId Id { get; protected set; } = id;
+        public TId Id { get; protected set; } = default!;
+
+        // Constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+        protected Entity()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+        {
+        }
+
+        // Constructor for domain use
+        protected Entity(TId id)
+        {
+            Id = id;
+        }
 
         public override bool Equals(object? obj)
         {

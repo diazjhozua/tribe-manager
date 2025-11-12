@@ -23,6 +23,15 @@ public sealed class Shop : AggregateRoot<ShopId>
     public IReadOnlyList<RewardItem> RewardItems => _rewardItems.AsReadOnly();
     public IReadOnlyList<Purchase> Purchases => _purchases.AsReadOnly();
 
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private Shop() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+        _rewardItems = new List<RewardItem>();
+        _purchases = new List<Purchase>();
+    }
+
     private Shop(
         ShopId id,
         TribeId tribeId,

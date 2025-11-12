@@ -4,10 +4,17 @@ namespace tribe_manager.domain.User.ValueObjects;
 
 public sealed class UserPreferences : ValueObject
 {
-    public bool EmailNotifications { get; }
-    public bool SlackIntegration { get; }
-    public bool DarkMode { get; }
-    public string Language { get; }
+    public bool EmailNotifications { get; private set; }
+    public bool SlackIntegration { get; private set; }
+    public bool DarkMode { get; private set; }
+    public string Language { get; private set; }
+
+    // Parameterless constructor for EF Core
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private UserPreferences()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
 
     private UserPreferences(
         bool emailNotifications,
