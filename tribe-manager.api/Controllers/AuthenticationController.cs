@@ -1,7 +1,11 @@
-﻿using MapsterMapper;
+﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using tribe_manager.application.Services.Authentication;
+using tribe_manager.application.Services.Authentication.Commands.Login;
+using tribe_manager.application.Services.Authentication.Commands.Register;
+using tribe_manager.contracts.Authentication;
 
 namespace tribe_manager.api.Controllers
 {
@@ -13,13 +17,25 @@ namespace tribe_manager.api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            throw new NotImplementedException();
+            LoginCommand command = _mapper.Map<LoginCommand>(request);
+
+            ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
+
+            return authResult.Match(
+                authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
+                Problem);
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            throw new NotImplementedException();
+            RegisterCommand command = _mapper.Map<RegisterCommand>(request);
+
+            ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
+
+            return authResult.Match(
+                authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
+                Problem);
         }
     }
 }
