@@ -2,5 +2,5 @@
 {
     public record LoginRequest(
         string Email,
-        string Password0);
+        string Password);
 }
