@@ -5,7 +5,8 @@
       "Bash(dotnet build)",
       "Bash(move TaskStatus.cs WorkItemStatus.cs)",
       "Bash(dotnet build \"C:\\Users\\jhozuad\\Documents\\projects\\tribe-manager\\tribe-manager.infrastructure\")",
-      "Bash(move \"C:\\Users\\jhozuad\\Documents\\projects\\tribe-manager\\tribe-manager.application\\Commands\\Register\\RegisterCommand.cs\" \"C:\\Users\\jhozuad\\Documents\\projects\\tribe-manager\\tribe-manager.application\\Services\\Authentication\\Commands\\Register\\RegisterCommand.cs\")"
+      "Bash(move \"C:\\Users\\jhozuad\\Documents\\projects\\tribe-manager\\tribe-manager.application\\Commands\\Register\\RegisterCommand.cs\" \"C:\\Users\\jhozuad\\Documents\\projects\\tribe-manager\\tribe-manager.application\\Services\\Authentication\\Commands\\Register\\RegisterCommand.cs\")",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
