@@ -1,9 +1,12 @@
-﻿namespace tribe_manager.api
+﻿using tribe_manager.api.Common.Mapping;
+
+namespace tribe_manager.api
 {
     public static class DependencyInjection
     {
         public static IServiceCollection AddPresentation(this IServiceCollection services)
         {
+            services.AddMappings();
             services.AddControllers();
 
             services.AddEndpointsApiExplorer();
