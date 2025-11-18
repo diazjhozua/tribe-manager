@@ -11,6 +11,8 @@ This is a **React 19** frontend application built with **Vite** and **TypeScript
 - **Vite 7.1.6** for build tooling and dev server
 - **Chakra UI 3.28.0** for component library and design system
 - **React Router DOM 7.9.4** for client-side routing
+- **Redux Toolkit** for state management
+- **React-Redux** for React integration
 - **ESLint** with strict TypeScript configuration and stylistic rules
 
 ### Project Structure
@@ -22,6 +24,10 @@ tribe-manager.web/
 │   │   ├── layout/       # Layout components (Header, Footer)
 │   │   └── sections/     # Page sections (Hero, About, Team, CTA)
 │   ├── pages/           # Route components
+│   ├── store/           # Redux store configuration
+│   │   ├── slices/      # Redux slices (authSlice, uiSlice)
+│   │   ├── index.ts     # Store configuration and types
+│   │   └── hooks.ts     # Typed Redux hooks
 │   ├── assets/          # Static assets
 │   └── main.tsx         # Application entry point
 ├── vite.config.ts       # Vite configuration
@@ -88,6 +94,42 @@ Standardized form input pattern with consistent styling:
 - `PasswordToggle` component for password visibility
 - Consistent green accent color theme (`green.400`, `green.300`)
 
+### Redux State Management
+Uses **Redux Toolkit** with a strongly-typed approach:
+
+#### Store Structure
+- **auth**: User authentication state, login/register/logout actions
+- **ui**: Global UI state (loading, toasts, sidebar)
+
+#### Usage Pattern
+```typescript
+// Import typed hooks
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+
+// In components
+const dispatch = useAppDispatch();
+const user = useAppSelector(state => state.auth.user);
+const isLoading = useAppSelector(state => state.auth.isLoading);
+
+// Dispatch actions
+dispatch(loginStart());
+dispatch(loginSuccess({ user, token }));
+```
+
+#### Slice Architecture
+- **authSlice**: Manages authentication state with actions for login/register/logout
+  - State: `user`, `token`, `isAuthenticated`, `isLoading`, `error`
+  - Actions: `loginStart/Success/Failure`, `registerStart/Success/Failure`, `logout`, `clearError`
+
+- **uiSlice**: Manages global UI state
+  - State: `isLoading`, `toasts[]`, `sidebarOpen`
+  - Actions: `setLoading`, `addToast`, `removeToast`, `toggleSidebar`
+
+#### Typed Redux Pattern
+- **RootState**: Complete store type for useSelector
+- **AppDispatch**: Store dispatch type for actions
+- **Typed Hooks**: `useAppDispatch()` and `useAppSelector()` replace raw Redux hooks
+
 ## Code Style and Linting
 
 ### ESLint Configuration
@@ -118,11 +160,13 @@ Uses React Router with simple route structure:
 ### Provider Hierarchy
 ```tsx
 <StrictMode>
-  <Provider>          // Chakra UI + Color Mode
-    <BrowserRouter>   // React Router
-      <App />         // Route definitions
-    </BrowserRouter>
-  </Provider>
+  <ReduxProvider store={store}>  // Redux store
+    <Provider>                   // Chakra UI + Color Mode
+      <BrowserRouter>            // React Router
+        <App />                  // Route definitions
+      </BrowserRouter>
+    </Provider>
+  </ReduxProvider>
 </StrictMode>
 ```
 

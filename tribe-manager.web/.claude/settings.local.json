@@ -5,7 +5,11 @@
       "Bash(npm run build)",
       "Bash(npm run lint:*)",
       "Bash(npm install:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(src/store/index.ts)",
+      "Bash(src/store/hooks.ts)",
+      "Bash(src/store/slices/authSlice.ts)",
+      "Bash(src/store/slices/uiSlice.ts)"
     ],
     "deny": [],
     "ask": []
