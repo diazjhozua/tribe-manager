@@ -6,18 +6,13 @@ import {
   VStack,
   HStack,
   Icon,
-  SimpleGrid,
   Flex,
   Link,
   Badge,
 } from '@chakra-ui/react';
 import {
   FaLeaf,
-  FaLinkedin,
-  FaTwitter,
-  FaGithub,
   FaCopyright,
-  FaTree,
   FaSeedling,
   FaHeart,
 } from 'react-icons/fa';
