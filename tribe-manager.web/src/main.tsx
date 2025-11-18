@@ -1,4 +1,6 @@
 import { Provider } from '@/components/ui/provider';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from '@/store';
 
 import { BrowserRouter } from 'react-router-dom';
 import { StrictMode } from 'react';
@@ -11,10 +13,12 @@ if (!rootElement) throw new Error('Root element not found');
 
 createRoot(rootElement).render(
   <StrictMode>
-    <Provider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <ReduxProvider store={store}>
+      <Provider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </ReduxProvider>
   </StrictMode>,
 );
